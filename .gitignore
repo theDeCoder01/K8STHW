@@ -1,2 +1,8 @@
 PSet.md
 Images/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.pem
+secrets/
