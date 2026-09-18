@@ -22,12 +22,10 @@ resource "aws_internet_gateway" "this" {
 }
 
 resource "aws_subnet" "public" {
-  for_each                = var.public_subnets
   vpc_id                  = aws_vpc.this.id
   cidr_block              = each.value.cidr_block
   availability_zone       = each.value.availability_zone
-  map_public_ip_on_launch = true
-  tags                    = { Name = "${var.name}-public-${each.key}" }
+  map_public_ip_on_launch = false
 }
 
 resource "aws_route_table" "public" {
