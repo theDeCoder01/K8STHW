@@ -40,12 +40,6 @@ locals {
       from_port   = 30000
       to_port     = 32767
       protocol    = "tcp"
-    },
-    {
-      description = "CoreDNS"
-      from_port   = 53
-      to_port     = 53
-      protocol    = "udp"
     }
   ]
 }
@@ -62,6 +56,7 @@ resource "aws_security_group" "this" {
       from_port   = ingress.value.from_port
       to_port     = ingress.value.to_port
       protocol    = ingress.value.protocol
+      self        = "true" #instead of CIDR blocks, we are allowing access from the same security group (self-referencing)
     }
   }
 
